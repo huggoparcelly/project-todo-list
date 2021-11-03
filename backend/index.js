@@ -1,14 +1,13 @@
 require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
-
-const { getTask } = require('./controllers/todoController');
+const tasks = require('./routes/todoRouter');
 
 const app = express();
-// const tasks = require('./routes/todoRouter');
 
 app.use(bodyParser.json());
-app.get('/todo', getTask);
+
+app.use('/todo', tasks);
 
 const PORT = process.env.PORT;
 
