@@ -9,17 +9,20 @@ const getTask = async (_req, res) => {
 
 // dúvida, retorno da criação da task
 const createTask = async (req, res) => {
-  const tasks = todoService.registerTask(req.body);
+  const tasks = await todoService.registerTask(req.body);
 
   return res.status(StatusCodes.CREATED).json(tasks);
 }
 
-// const updateTask = async (req, res) => {
+const updateTask = async (req, res) => {
+  const { id } = req.params;
+  const updatedTask = await todoService.updatedTask(id, req.body);
 
-// }
+  return res.status(StatusCodes.CREATED).json(updatedTask)
+}
 
 module.exports = { 
   getTask, 
   createTask,
-  // updateTask,
+  updateTask,
 }
