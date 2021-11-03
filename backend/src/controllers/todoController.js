@@ -41,15 +41,9 @@ const removeTask = async (req, res) => {
   return res.status(StatusCodes.OK).json({message: 'Deletado com sucesso'})
 }
 
-// const updateStatus = async(req, res) => {
-//   const { id } = req.params;
-//   const 
-// }
-
 module.exports = { 
   getTask, 
   createTask,
   updateTask,
   removeTask,
-  // updateStatus,
 }
