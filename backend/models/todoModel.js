@@ -13,26 +13,41 @@ const addTask = async (task, status, createDate) => {
   await db.collection(DB_NAME).insertOne({ task, status, createDate });
 };
 
+const findTaskById = async (id) => {
+  
+  if (!ObjectId.isValid(id)) {
+    return null;
+  }
+
+  const db = await connection();
+  const task = await db.collection(DB_NAME).findOne({ _id: new ObjectId(id) });
+  if (!task) return null;
+
+  return task;
+}
+
 const upTask = async (id, body) => {
 
   const { task, status } = body;
 
-  if (!ObjectId.isValid(id)) {
-    return null;
-  }
+  const updatedTask = await findTaskById(id);
+  if(!updatedTask) return null;
 
   const db = await connection();
-  await db.collection(DB_NAME)
+   await db.collection(DB_NAME)
     .updateOne({ _id: new ObjectId(id) }, { $set: { task, status } });
+
+  return updatedTask;
 }
 
 const removeTask = async (id) => {
-  if (!ObjectId.isValid(id)) {
-    return null;
-  }
+  const removedTask = await findTaskById(id);
+  if(!removedTask) return null;
 
   const db = await connection();
   await db.collection(DB_NAME).deleteOne({ _id: new ObjectId(id) });
+
+  return removedTask;
 }
 
 module.exports = { 

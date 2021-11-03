@@ -10,4 +10,6 @@ router.put('/:id', todoController.updateTask);
 
 router.delete('/:id', todoController.removeTask);
 
+// router.put('/:id/status', todoController.updateStatus);
+
 module.exports = router;

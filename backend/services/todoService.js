@@ -1,7 +1,9 @@
+const { StatusCodes } = require('http-status-codes');
 const modelTodo = require('../models/todoModel')
 const dateNow = require('../schema/date');
-const getAllTasks = async () => modelTodo.getTasks();
 
+
+const getAllTasks = async () => modelTodo.getTasks();
 
 const registerTask = async (body) => {
   const { task, status } = body;
@@ -9,10 +11,22 @@ const registerTask = async (body) => {
   return modelTodo.addTask(task, status, date);
 }
 
-const updatedTask = async (id, body) => modelTodo.upTask(id, body);
+const updatedTask = async (id, body) => {
+  
+  const task = await modelTodo.upTask(id, body)
 
+  if (!task) return { code: StatusCodes.NOT_FOUND, message: 'Tarefa não encontrada' };
 
-const deleteTask = async (id) => modelTodo.removeTask(id);
+  return task;
+};
+
+const deleteTask = async (id) => {
+ const taskRemoved = await modelTodo.removeTask(id);
+
+ if (!taskRemoved) return { code: StatusCodes.NOT_FOUND, message: 'Tarefa não encontrada' };
+
+ return taskRemoved;
+}
 
 module.exports = { 
   getAllTasks,
