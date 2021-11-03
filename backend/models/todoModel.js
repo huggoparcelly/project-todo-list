@@ -10,8 +10,7 @@ const getTasks = async () => {
 
 const addTask = async (task, status, createDate) => {
   const db = await connection();
-  const insertTask = await db.collection(DB_NAME).insertOne({ task, status, createDate });
-
+  await db.collection(DB_NAME).insertOne({ task, status, createDate });
 };
 
 const upTask = async (id, body) => {
@@ -23,14 +22,22 @@ const upTask = async (id, body) => {
   }
 
   const db = await connection();
-  const updatedTask = await db.collection(DB_NAME)
+  await db.collection(DB_NAME)
     .updateOne({ _id: new ObjectId(id) }, { $set: { task, status } });
+}
 
-  
+const removeTask = async (id) => {
+  if (!ObjectId.isValid(id)) {
+    return null;
+  }
+
+  const db = await connection();
+  await db.collection(DB_NAME).deleteOne({ _id: new ObjectId(id) });
 }
 
 module.exports = { 
   getTasks,
   addTask,
   upTask,
+  removeTask,
 }

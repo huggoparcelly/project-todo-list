@@ -8,6 +8,6 @@ router.post('/', todoController.createTask);
 
 router.put('/:id', todoController.updateTask);
 
-// router.delete('/:id', removeTask);
+router.delete('/:id', todoController.removeTask);
 
 module.exports = router;

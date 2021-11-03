@@ -9,13 +9,14 @@ const registerTask = async (body) => {
   return modelTodo.addTask(task, status, date);
 }
 
-const updatedTask = async (id, body) => {
-  
-  return modelTodo.upTask(id, body)
-}
+const updatedTask = async (id, body) => modelTodo.upTask(id, body);
+
+
+const deleteTask = async (id) => modelTodo.removeTask(id);
 
 module.exports = { 
   getAllTasks,
   registerTask,
   updatedTask,
+  deleteTask,
 }
