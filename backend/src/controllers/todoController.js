@@ -41,9 +41,20 @@ const removeTask = async (req, res) => {
   return res.status(StatusCodes.OK).json({message: 'Deletado com sucesso'})
 }
 
+const updateStatus = async (req, res) => {
+  const { id } = req.params;
+
+  const updatedStatus = await todoService.updatedStatus(id, req.body);
+
+  if (updatedStatus.message) return res.status(updatedStatus.code).json({ message: updatedStatus.message });
+
+  return res.status(StatusCodes.OK).json(updatedStatus)
+}
+
 module.exports = { 
   getTask, 
   createTask,
   updateTask,
   removeTask,
+  updateStatus
 }
