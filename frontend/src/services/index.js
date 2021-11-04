@@ -1,3 +1,5 @@
+const HEADERS = {'Content-Type': 'application/json'};
+
 export async function fetchTodoList() {
   try {
     const API_URL = 'http://localhost:3000/todo'
@@ -18,16 +20,13 @@ export async function fetchTodoList() {
 
 export async function fetchSaveTodo(formData) {
   try {
-    console.log(JSON.stringify(formData));
     const API_URL = 'http://localhost:3000/todo'
     
     const data = await fetch(API_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: HEADERS,
       body: JSON.stringify(formData),
     });
-    
-    console.log(data);
     return data.json();
   } catch (error) {
     console.log(error);
@@ -45,11 +44,15 @@ export async function fetchRemoveTodo(id) {
   }
 }
 
-export async function fetchStatusTodo(id) {
+export async function fetchStatusTodo(id, status) {
   try {
-    const API_URL = `http://localhost:3000/todo/${id}`
-    const data = await fetch(API_URL, 
-      {method: 'DELETE'});
+    console.log(JSON.stringify({status}));
+    const API_URL = `http://localhost:3000/todo/${id}/status`
+    const data = await fetch(API_URL, {
+        method: 'PUT',
+        headers: HEADERS,
+        body: JSON.stringify({status}),
+    });
     return data.json();
   } catch (error) {
     console.log(error);

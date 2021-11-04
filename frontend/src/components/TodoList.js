@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { fetchTodoList, fetchRemoveTodo } from '../services';
+import StatusTask from './StatusTask';
 
 function TodoList() {
   
@@ -30,19 +31,6 @@ function TodoList() {
     window.location.reload()
   }
 
-  // const selectButton = () => {
-  //   return (<label>
-  //         Status:
-  //         <select>
-  //         {status.map((stat) => (
-  //           <option value={stat}>{stat}</option>
-  //         ))}
-  //           {/* <option value="em andamento">Em andamento</option>
-  //           <option value="pronto">Pronto</option> */}
-  //         </select>
-  //   </label>);
-  // }
-
   return(
     <div>
       <ul>
@@ -54,7 +42,7 @@ function TodoList() {
               key = { index }
               onClick = {() => handleRemove(todo._id)}
             >excluir</button>
-            {/* {selectButton()} */}
+            <StatusTask id ={todo._id} status = {todo.status}/>
           </li>)
         )}
       </ul>

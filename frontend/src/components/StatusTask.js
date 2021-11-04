@@ -1,38 +1,29 @@
-// Fonte de pesquisa: https://pt-br.reactjs.org/docs/forms.html
+import { useState } from 'react';
+import { fetchStatusTodo } from '../services';
 
-import { Component } from "react";
-// import { fetchSaveTodo } from '../services';
+function StatusTask (infoTask) {
+  const { id, status } = infoTask;
+  const [state, setStatus] = useState(status);
 
-
-class StatusTask extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      task: '',
-      status: 'pendente',
-    };
-
+  const handleChangeStatus = async (event) => {
+    const newStatus = event.target.value;
+    setStatus(newStatus);
+    await fetchStatusTodo(id, newStatus);
+    window.location.reload()
   }
 
-  handleChangeStatus = (event) => {
-    const formData = this.state;
-    this.setState({ status: event.target.value })
-  }
-
-  render() {
-    return (
-      <form>
-        <label>
-          Status:
-          <select value={this.state.status} onChange={this.handleChangeStatus}>
-            <option value="pendente">Pendente</option>
-            <option value="em andamento">Em andamento</option>
-            <option value="pronto">Pronto</option>
-          </select>
-        </label>
-      </form>
-    );
-  }
+  return (
+    <form>
+      <label>
+        Status:
+        <select value={state} onChange = {(e) => handleChangeStatus(e)}>
+          <option value="pendente">Pendente</option>
+          <option value="em andamento">Em andamento</option>
+          <option value="pronto">Pronto</option>
+        </select>
+      </label>
+    </form>
+  );
 }
 
 export default StatusTask;
