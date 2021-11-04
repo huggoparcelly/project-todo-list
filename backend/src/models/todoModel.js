@@ -13,6 +13,7 @@ const addTask = async (task, status, createDate) => {
   await db.collection(DB_NAME).insertOne({ task, status, createDate });
 };
 
+// vifica se o id é válido
 const findTaskById = async (id) => {
   
   if (!ObjectId.isValid(id)) {
@@ -50,9 +51,23 @@ const removeTask = async (id) => {
   return removedTask;
 }
 
+const upStatus = async(id, body) => {
+  const { status } = body;
+
+  const updatedTask = await findTaskById(id);
+  if(!updatedTask) return null;
+
+  const db = await connection();
+   await db.collection(DB_NAME)
+    .updateOne({ _id: new ObjectId(id) }, { $set: { status } });
+
+  return updatedTask;
+}
+
 module.exports = { 
   getTasks,
   addTask,
   upTask,
   removeTask,
+  upStatus,
 }

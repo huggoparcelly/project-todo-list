@@ -28,9 +28,18 @@ const deleteTask = async (id) => {
  return taskRemoved;
 }
 
+const updatedStatus = async (id, body) => {
+  const status = await modelTodo.upStatus(id, body)
+
+  if (!status) return { code: StatusCodes.NOT_FOUND, message: 'Status não encontrado' };
+
+  return status;
+}
+
 module.exports = { 
   getAllTasks,
   registerTask,
   updatedTask,
   deleteTask,
+  updatedStatus,
 }
