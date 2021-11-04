@@ -34,7 +34,7 @@ export async function fetchSaveTodo(formData) {
   }
 }
 
-export async function fetchEditTodo(id) {
+export async function fetchRemoveTodo(id) {
   try {
     const API_URL = `http://localhost:3000/todo/${id}`
     const data = await fetch(API_URL, 
@@ -44,3 +44,25 @@ export async function fetchEditTodo(id) {
     console.log(error);
   }
 }
+
+export async function fetchStatusTodo(id) {
+  try {
+    const API_URL = `http://localhost:3000/todo/${id}`
+    const data = await fetch(API_URL, 
+      {method: 'DELETE'});
+    return data.json();
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// export async function fetchUpdateTodo(id) {
+//   try {
+//     const API_URL = `http://localhost:3000/todo/${id}`
+//     const data = await fetch(API_URL, 
+//       {method: 'DELETE'});
+//     return data.json();
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }

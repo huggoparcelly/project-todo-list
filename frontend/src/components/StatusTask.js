@@ -1,10 +1,10 @@
 // Fonte de pesquisa: https://pt-br.reactjs.org/docs/forms.html
 
 import { Component } from "react";
-import { fetchSaveTodo } from '../services';
+// import { fetchSaveTodo } from '../services';
 
 
-class AddTask extends Component {
+class StatusTask extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,26 +14,14 @@ class AddTask extends Component {
 
   }
 
-  handleChangeTask = (event) => {
-    this.setState({ task: event.target.value });
-  }
-
   handleChangeStatus = (event) => {
-    this.setState({ status: event.target.value })
-  }
-
-  handleSubmit = async (event) => {
     const formData = this.state;
-    await fetchSaveTodo(formData);
+    this.setState({ status: event.target.value })
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Tarefa:
-          <input type="text" value={this.state.task} onChange={this.handleChangeTask} />
-        </label>
+      <form>
         <label>
           Status:
           <select value={this.state.status} onChange={this.handleChangeStatus}>
@@ -42,10 +30,9 @@ class AddTask extends Component {
             <option value="pronto">Pronto</option>
           </select>
         </label>
-        <input type="submit" value="Salvar" />
       </form>
     );
   }
 }
 
-export default AddTask;
+export default StatusTask;

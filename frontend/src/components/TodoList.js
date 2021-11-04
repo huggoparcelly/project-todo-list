@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { fetchTodoList, fetchEditTodo } from '../services';
+import { fetchTodoList, fetchRemoveTodo } from '../services';
 
 function TodoList() {
   
@@ -25,10 +25,23 @@ function TodoList() {
   //   return 0;
   // });
 
-  async function handleRemove(id) {
-    await fetchEditTodo(id);
+  const handleRemove = async (id) => {
+    await fetchRemoveTodo(id);
     window.location.reload()
   }
+
+  // const selectButton = () => {
+  //   return (<label>
+  //         Status:
+  //         <select>
+  //         {status.map((stat) => (
+  //           <option value={stat}>{stat}</option>
+  //         ))}
+  //           {/* <option value="em andamento">Em andamento</option>
+  //           <option value="pronto">Pronto</option> */}
+  //         </select>
+  //   </label>);
+  // }
 
   return(
     <div>
@@ -41,6 +54,7 @@ function TodoList() {
               key = { index }
               onClick = {() => handleRemove(todo._id)}
             >excluir</button>
+            {/* {selectButton()} */}
           </li>)
         )}
       </ul>
