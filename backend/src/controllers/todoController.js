@@ -43,7 +43,6 @@ const removeTask = async (req, res) => {
 
 const updateStatus = async (req, res) => {
   const { id } = req.params;
-
   const updatedStatus = await todoService.updatedStatus(id, req.body);
 
   if (updatedStatus.message) return res.status(updatedStatus.code).json({ message: updatedStatus.message });
