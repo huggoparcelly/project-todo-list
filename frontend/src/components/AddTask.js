@@ -1,3 +1,5 @@
+// Fonte de pesquisa: https://pt-br.reactjs.org/docs/forms.html
+
 import { Component } from "react";
 import { fetchSaveTodo } from '../services';
 
@@ -47,24 +49,3 @@ class AddTask extends Component {
 }
 
 export default AddTask;
-
-//  async function handleSave(formData) {
-//   await fetchSaveTodo(formData)
-//   window.location.reload()
-// }
-
-// <form>
-//         <span>Tarefa </span>
-//         <input type="text"></input>
-//         <span>Status </span>
-//         <select>
-//           <option>Pendente</option>
-//           <option>Em andamento</option>
-//           <option>Pronto</option>
-//         </select>
-//         {}
-//         {/* <button
-//           type = 'submit'
-//           onClick = {() => handleSave(formData)}
-//         >salvar</button> */}
-//       </form>
