@@ -3,6 +3,8 @@
 import { Component } from "react";
 import { fetchSaveTodo } from '../services';
 
+import { Row, Col, Form, Button } from 'react-bootstrap';
+
 
 class AddTask extends Component {
   constructor(props) {
@@ -29,21 +31,23 @@ class AddTask extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Tarefa:
-          <input type="text" value={this.state.task} onChange={this.handleChangeTask} />
-        </label>
-        <label>
-          Status:
-          <select value={this.state.status} onChange={this.handleChangeStatus}>
-            <option value="pendente">Pendente</option>
-            <option value="em andamento">Em andamento</option>
-            <option value="pronto">Pronto</option>
-          </select>
-        </label>
-        <input type="submit" value="Salvar" />
-      </form>
+      <Form className="w-75 mb-3" onSubmit={this.handleSubmit}>
+        <Row className="align-items-center">
+          <Col>
+            <Form.Control placeholder="Adicione sua tarefa aqui..." onChange={this.handleChangeTask}/>
+          </Col>
+          <Col>
+          <Form.Select value={this.state.status} onChange={this.handleChangeStatus}>
+            <option value="Pendente">Pendente</option>
+            <option value="Em andamento">Em andamento</option>
+            <option value="Pronto">Pronto</option>
+          </Form.Select>
+          </Col>
+          <Col>
+            <Button type='submit' variant="success">Salvar</Button>
+          </Col>
+        </Row>
+      </Form>
     );
   }
 }
