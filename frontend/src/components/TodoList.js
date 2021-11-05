@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { fetchTodoList, fetchRemoveTodo } from '../services';
+import { fetchTodoList } from '../services';
 import StatusTask from './StatusTask';
 import UpdateTask from './UpdateTask';
 
-import { Button, ButtonGroup } from 'react-bootstrap';
+import { Button, ListGroup } from 'react-bootstrap';
 
 function TodoList() {
   
@@ -62,48 +62,38 @@ function TodoList() {
     setToggle(!toggle);
   }
 
-  const handleRemove = async (id) => {
-    await fetchRemoveTodo(id);
-    window.location.reload()
-  }
-
   const renderButtons = () => {
     return (
-      <ButtonGroup>
+      <>
         <Button 
           className="mb-2"
           onClick = {() => handleOrderByName()}
         >Ordenar por nome</Button>
-
+        {' '}
         <Button 
           className="mb-2"
           onClick = {() => handleOrderByDate()}
         >Ordenar por data</Button>
-
+        {' '}
         <Button 
           className="mb-2"
           onClick = {() => handleOrderByStatus()}
         >Ordenar por status</Button>
-      </ButtonGroup>
+      </>
     )
   }
   
   return(
     <div>
       {renderButtons()}
-      <ul>
+      <ListGroup variant="flush">
          {list.map((todo, index) => 
-          (<li key={index}>{todo.createDate} {todo.task}: {todo.status}  
+          (<ListGroup.Item key={index}>{todo.createDate} {todo.task}: {todo.status}  
             <StatusTask id ={todo._id} status = {todo.status}/>
-            <UpdateTask id={todo._id}/> 
-            <button
-              type='submit'
-              key = { index }
-              onClick = {() => handleRemove(todo._id)}
-            >excluir</button>
-          </li>)
+            <UpdateTask id={todo._id}/>
+          </ListGroup.Item>)
         )}
-      </ul>
+      </ListGroup>
     </div>
   );
 }

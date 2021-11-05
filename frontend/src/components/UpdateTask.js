@@ -1,7 +1,9 @@
 // Fonte de pesquisa: https://pt-br.reactjs.org/docs/forms.html
 
 import { Component } from "react";
-import { fetchUpdateTodo } from '../services';
+import { fetchUpdateTodo, fetchRemoveTodo } from '../services';
+
+import { Row, Col, Form, Button } from 'react-bootstrap';
 
 
 class UpdateTask extends Component {
@@ -12,8 +14,8 @@ class UpdateTask extends Component {
       status: 'pendente',
       updated: false,
     };
-
   }
+
 
   handleChangeTask = (event) => {
     this.setState({ task: event.target.value });
@@ -35,32 +37,49 @@ class UpdateTask extends Component {
     }) )
   }
 
+  handleRemove = async () => {
+    const id = this.props.id;
+    await fetchRemoveTodo(id);
+    window.location.reload()
+  }
+
   renderUpdate = () => {
-    return (<form onSubmit={this.handleSubmit}>
-      <label>
-        Tarefa:
-        <input type="text" value={this.state.task} onChange={this.handleChangeTask} />
-      </label>
-      <label>
-        Status:
-        <select value={this.state.status} onChange={this.handleChangeStatus}>
-          <option value="pendente">Pendente</option>
-          <option value="em andamento">Em andamento</option>
-          <option value="pronto">Pronto</option>
-        </select>
-      </label>
-      <input type="submit" value="Salvar" />
-    </form>)
+    return (
+    <Form className="w-75 mb-3" onSubmit={this.handleSubmit}>
+      <Row className="align-items-center">
+        <Col>
+          <Form.Control placeholder="Adicione sua tarefa aqui..." onChange={this.handleChangeTask}/>
+        </Col>
+        <Col>
+        <Form.Select value={this.state.status} onChange={this.handleChangeStatus}>
+          <option value="Pendente">Pendente</option>
+          <option value="Em andamento">Em andamento</option>
+          <option value="Pronto">Pronto</option>
+        </Form.Select>
+        </Col>
+        <Col>
+          <Button type='submit' variant="success">Salvar</Button>
+        </Col>
+      </Row>
+    </Form>
+    )
   }
 
   render() {
     return (
       <div>
         {this.state.updated ? this.renderUpdate() : <span></span>}
-        <button
+        <Button
           type='submit'
           onClick = {this.handleClickUpdate}
-        >editar</button>
+          variant="warning"
+        >Editar</Button>
+        {' '}
+        <Button
+          type='submit'
+          variant="danger"
+          onClick = {this.handleRemove}
+        >Excluir</Button>
       </div>
     );
   }
