@@ -3,6 +3,8 @@ import { fetchTodoList, fetchRemoveTodo } from '../services';
 import StatusTask from './StatusTask';
 import UpdateTask from './UpdateTask';
 
+import { Button, ButtonGroup } from 'react-bootstrap';
+
 function TodoList() {
   
   const [list, setList] = useState([]);
@@ -67,21 +69,22 @@ function TodoList() {
 
   const renderButtons = () => {
     return (
-      <div>
-        <button 
-          type='botton'
+      <ButtonGroup>
+        <Button 
+          className="mb-2"
           onClick = {() => handleOrderByName()}
-        >Ordenar por nome</button>
-        <button 
-          type='botton'
-          onClick = {() => handleOrderByDate()}
-        >Ordenar por data</button>
+        >Ordenar por nome</Button>
 
-        <button 
-          type='botton'
+        <Button 
+          className="mb-2"
+          onClick = {() => handleOrderByDate()}
+        >Ordenar por data</Button>
+
+        <Button 
+          className="mb-2"
           onClick = {() => handleOrderByStatus()}
-        >Ordenar por status</button>
-      </div>
+        >Ordenar por status</Button>
+      </ButtonGroup>
     )
   }
   
