@@ -1,7 +1,7 @@
 // Fonte de pesquisa: https://pt-br.reactjs.org/docs/forms.html
 
 import { Component } from "react";
-// import { fetchSaveTodo } from '../services';
+import { fetchUpdateTodo } from '../services';
 
 
 class UpdateTask extends Component {
@@ -24,15 +24,16 @@ class UpdateTask extends Component {
   }
 
   handleSubmit = async (event) => {
-    const formData = this.state;
-    // fetch para o put :id
-    // await fetchSaveTodo(formData);
+    const { task, status } = this.state;
+    const id = this.props.id;
+    await fetchUpdateTodo(id, {task, status});
+    // event.preventDefault();
   }
 
   handleClickUpdate = () => {
-    // const updated = this.state.updated;
-    // ajeitar o true and false
-    this.setState({updated: true} )
+    this.setState(prevState => ({
+      updated: !prevState.updated
+    }) )
   }
 
   renderUpdate = () => {

@@ -46,7 +46,7 @@ function TodoList() {
          {list.map((todo, index) => 
           (<li key={index}>{todo.createDate} {todo.task}: {todo.status}  
             <StatusTask id ={todo._id} status = {todo.status}/>
-            <UpdateTask /> 
+            <UpdateTask id={todo._id}/> 
             <button
               type='submit'
               key = { index }
@@ -56,7 +56,6 @@ function TodoList() {
           </li>)
         )}
       </ul>
-      
     </div>
   );
 }
