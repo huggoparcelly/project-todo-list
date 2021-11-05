@@ -17,9 +17,9 @@ Considerações para instalar as dependências e colocar a API no ar.
 * Pelo terminal abra a pasta do projeto e acesse a pasta **backend**
 * Crie um arquivo .env preenchendo-o como o arquivo **.env.example**
 * Ainda na pasta do backend, pelo terminal, execute os seguintes comandos:
-  * npm install
-  * npm start (para o script de produção)
-  * npm run dev (para o script de desenvolvimento)
+  * `npm install`
+  * `npm start` (para o script de produção)
+  * `npm run dev` (para o script de desenvolvimento)
 Agora a API está pronta para receber requisições
 
 ### API
@@ -44,3 +44,20 @@ A API apresenta cinco endpoints
 * Um **DELETE** na nota /todo/:id que deleta uma tarefa do banco de dados;
 
 ## Frontend
+Trata-se de um frontend bem simples que vai se comunicar com a nossa API. Ele possui as seguintes funcionalidades:
+
+* Uma tabela para exibição das tarefas retornadas pela API;
+* Um campo para adicinar uma tarefa com seu status;
+* Botões para editar e excluir uma tarefa;
+* O status da tarefa também poderá ser alterado;
+
+Todas essas funcionalidades estão divididas em alguns componetes:
+* **AddTask** para adicionar uma tarefa;
+* **StatusTask** para atualizar apenas o status;
+* **TodoList** que renderiza a lista de tarefas e possui os botões de editar e excluir;
+* **UpdateTask** para editar uma tarefa;
+
+### Inicialização
+* Pelo terminal abra a pasta do projeto e acesse a pasta **frontend**
+* Para abrir a aplicação digite o comando
+  * `npm start`
