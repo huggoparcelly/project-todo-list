@@ -44,6 +44,9 @@ A API apresenta cinco endpoints
 * Um **DELETE** na nota /todo/:id que deleta uma tarefa do banco de dados;
 
 ## Frontend
+O frontend consiste em um projeto simples utilizando React, que renderizará o seguinte layout:
+![Layout Projeto Todo-List](img/projeto-todo-list.png)
+
 Trata-se de um frontend bem simples que vai se comunicar com a nossa API. Ele possui as seguintes funcionalidades:
 
 * Uma tabela para exibição das tarefas retornadas pela API;
