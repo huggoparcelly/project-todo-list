@@ -27,7 +27,6 @@ class UpdateTask extends Component {
     const { task, status } = this.state;
     const id = this.props.id;
     await fetchUpdateTodo(id, {task, status});
-    // event.preventDefault();
   }
 
   handleClickUpdate = () => {
