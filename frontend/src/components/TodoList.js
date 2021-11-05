@@ -88,8 +88,8 @@ function TodoList() {
       {renderButtons()}
       <ListGroup variant="flush">
          {list.map((todo, index) => 
-          (<ListGroup.Item key={index}>{todo.createDate} {todo.task}: {todo.status}  
-            <StatusTask id ={todo._id} status = {todo.status}/>
+          (<ListGroup.Item className="fs-5" key={index}>{todo.createDate} {todo.task}: {todo.status}  
+            <StatusTask id={todo._id} status={todo.status}/>
             <UpdateTask id={todo._id}/>
           </ListGroup.Item>)
         )}

@@ -7,7 +7,6 @@ function StatusTask (infoTask) {
   const { id, status } = infoTask;
   const [state, setStatus] = useState(status);
   
-
   const handleChangeStatus = async (event) => {
     const newStatus = event.target.value;
     setStatus(newStatus);
@@ -17,9 +16,9 @@ function StatusTask (infoTask) {
   
   return (
     <Form.Select className="w-25 mb-2 mt-2" value={state} onChange={(e) => handleChangeStatus(e)}>
-      <option value="Pendente">Pendente</option>
-      <option value="Em andamento">Em andamento</option>
-      <option value="Pronto">Pronto</option>
+      <option value="pendente">Pendente</option>
+      <option value="em andamento">Em andamento</option>
+      <option value="pronto">Pronto</option>
     </Form.Select>
   );
 }
